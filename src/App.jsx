@@ -18,7 +18,47 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Simple Text Diff</h1>
+      <header style={{ display: "flex", justifyContent: "space-around" }}>
+        <div>
+          <h1>Simple Text Diff</h1>
+        </div>
+        <div className="radio-container">
+          <label>Compare by:</label>
+          <div>
+            <input
+              type="radio"
+              id="words"
+              name="compareType"
+              value="words"
+              checked={compareType === "words"}
+              onChange={handleCompareTypeChange}
+            />
+            <label htmlFor="words">Words</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="chars"
+              name="compareType"
+              value="chars"
+              checked={compareType === "chars"}
+              onChange={handleCompareTypeChange}
+            />
+            <label htmlFor="chars">Characters</label>
+          </div>
+        </div>
+        <button
+          className="findDiff-button"
+          onClick={() => setShowTextDiff(!showTextDiff)}
+          // disabled={!originalText || !changedText}
+        >
+          {showTextDiff ? "Hide" : "Find"} difference
+        </button>
+      </header>
+<br/>
+<br/>
+<br/>
+<br/>
       {showTextDiff && (
         <TextDiif
           originalText={originalText}
@@ -42,38 +82,6 @@ export default function App() {
           onChange={(e) => setChangedText(e.target.value)}
         />
       </div>
-      <div className="radio-container">
-        <label>Compare by:</label>
-        <div>
-          <input
-            type="radio"
-            id="words"
-            name="compareType"
-            value="words"
-            checked={compareType === "words"}
-            onChange={handleCompareTypeChange}
-          />
-          <label htmlFor="words">Words</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="chars"
-            name="compareType"
-            value="chars"
-            checked={compareType === "chars"}
-            onChange={handleCompareTypeChange}
-          />
-          <label htmlFor="chars">Characters</label>
-        </div>
-      </div>
-      <button
-        className="findDiff-button"
-        onClick={() => setShowTextDiff(!showTextDiff)}
-        // disabled={!originalText || !changedText}
-      >
-        {showTextDiff ? "Hide" : "Find"} difference
-      </button>
     </div>
   );
 }
