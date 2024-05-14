@@ -47,18 +47,30 @@ export default function App() {
             <label htmlFor="chars">Characters</label>
           </div>
         </div>
-        <button
-          className="findDiff-button"
-          onClick={() => setShowTextDiff(!showTextDiff)}
-          // disabled={!originalText || !changedText}
-        >
-          {showTextDiff ? "Hide" : "Find"} difference
-        </button>
+        <div >
+          <button style={{ margin:"10px"}}
+            className="findDiff-button"
+            onClick={() => setShowTextDiff(!showTextDiff)}
+          >
+            {showTextDiff ? "Hide" : "Find"} difference
+          </button>
+          <button
+          style={{margin:"10px"}}
+            className="findDiff-button"
+            onClick={() => {
+              setShowTextDiff(false);
+              setChangedText("");
+              setOriginalText("");
+            }}
+          >
+            Clear
+          </button>
+        </div>
       </header>
-<br/>
-<br/>
-<br/>
-<br/>
+      <br />
+      <br />
+      <br />
+      <br />
       {showTextDiff && (
         <TextDiif
           originalText={originalText}
