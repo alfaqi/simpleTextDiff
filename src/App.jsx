@@ -3,7 +3,7 @@ import TextDiif from "./components/TextDiff";
 import { useState } from "react";
 import "./App.css";
 export default function App() {
-  const [showTextDiff, setShowTextDiff] = useState(false);
+  const [showTextDiff, setShowTextDiff] = useState(true);
   const [originalText, setOriginalText] = useState("");
   const [changedText, setChangedText] = useState("");
   const [compareType, setCompareType] = useState("words");
@@ -22,7 +22,7 @@ export default function App() {
         <div>
           <h1>Simple Text Diff</h1>
         </div>
-        <div className="radio-container">
+        <div style={{ textAlign: "start" , paddingTop:"10px" }}>
           <label>Compare by:</label>
           <div>
             <input
@@ -47,18 +47,17 @@ export default function App() {
             <label htmlFor="chars">Characters</label>
           </div>
         </div>
-        <div >
-          <button style={{ margin:"10px"}}
+        <div>
+          <button
             className="findDiff-button"
             onClick={() => setShowTextDiff(!showTextDiff)}
           >
             {showTextDiff ? "Hide" : "Find"} difference
           </button>
           <button
-          style={{margin:"10px"}}
             className="findDiff-button"
             onClick={() => {
-              setShowTextDiff(false);
+              // setShowTextDiff(false);
               setChangedText("");
               setOriginalText("");
             }}
@@ -79,20 +78,20 @@ export default function App() {
         />
       )}
       <div className="input-container">
-        <label>Original Text:</label>
-        <textarea
-          value={originalText}
-          style={{ width: "500px", height: "500px", fontSize: "20px" }}
-          onChange={(e) => setOriginalText(e.target.value)}
-        />
-      </div>
-      <div className="input-container">
-        <label>Changed Text:</label>
-        <textarea
-          style={{ width: "500px", height: "500px", fontSize: "20px" }}
-          value={changedText}
-          onChange={(e) => setChangedText(e.target.value)}
-        />
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label>Original Text:</label>
+          <textarea
+            value={originalText}
+            onChange={(e) => setOriginalText(e.target.value)}
+          />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label>Changed Text:</label>
+          <textarea
+            value={changedText}
+            onChange={(e) => setChangedText(e.target.value)}
+          />
+        </div>
       </div>
     </div>
   );
